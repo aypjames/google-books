@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import Header from "./components/Header/Header";
+import Form from "./components/Form/Form";
+import BookList from "./containers/BookList/BookList";
+import "./App.css";
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isFetchingData, setIsFetchingData] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+
+  console.log(searchTerm);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <Form
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        isFetchingData={isFetchingData}
+        setIsFetchingData={setIsFetchingData}
+        setSearchResults={setSearchResults}
+      />
+      {isFetchingData ? (
+        <p>{`Just a sec! Searching the library for "${searchTerm}"`}</p>
+      ) : (
+        <BookList searchResults={searchResults} />
+      )}
+      <BookList searchResults={searchResults} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
