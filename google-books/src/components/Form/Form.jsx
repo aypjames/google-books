@@ -6,17 +6,20 @@ const Form = ({
   isFetchingData,
   setIsFetchingData,
   setSearchResults,
+  setloadModalData,
 }) => {
   const dataFetch = async () => {
+    const searchQuery = searchTerm.replaceAll(" ", "+");
     const response =
-      await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}
+      await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=40
 `);
     const results = await response.json();
     const resultsToArray = Object.values(results);
     const arrayOfBooks = resultsToArray[2];
-    console.log(arrayOfBooks);
+    console.log("query results", arrayOfBooks);
     setSearchResults(arrayOfBooks);
     setIsFetchingData(false);
+    setloadModalData(true);
   };
 
   const handleSubmitClick = (e) => {
