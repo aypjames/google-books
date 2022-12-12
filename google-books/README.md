@@ -1,7 +1,6 @@
 # Google Books Search
 
-A React web-application that allows you to search the Google Books API.
-It produces a list of results, with the option to view more info by clicking into each specific book.
+A Google Books API Search Engine built using React.
 
 ## ScreenShots
 
@@ -10,11 +9,11 @@ It produces a list of results, with the option to view more info by clicking int
 
 ## Features
 
-- Enables you to search through the Google API and returns upto 40 results for the query.
-- Give feedback to the user when no book results can be found for the query.
-- When a user clicks a book in the grid, a modal should appear with more book information and a direct link to the google books result.
-- The results grid are responsive on different screen sizes
-- each block should has its own SCSS file and uses palette variables
+- The app allows you to search through the Google API and returns up to 40 results for the query.
+- It gives feedback to the user when no book results can be found for the query.
+- When a user clicks a book in the grid, a modal appears with more book information and a direct link to the google books result.
+- The results grid is responsive to different screen sizes.
+- Each block has its own SCSS file, but makes use palette variables and @media queries.
 
 ## Useful Resources
 
@@ -24,5 +23,5 @@ It produces a list of results, with the option to view more info by clicking int
 
 ## Challenges
 
-- Transferring of data across components - Next time, might consider using the useContext Hook
-- Decluttering and organisation of Components and Containers
+- Transferring of data across components - Next time might consider using the useContext Hook.
+- Decluttering and organisation of Components and Containers.
