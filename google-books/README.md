@@ -5,8 +5,8 @@ It produces a list of results, with the option to view more info by clicking int
 
 ## ScreenShots
 
-![Screenshot of Search Functionality](./src/READMEImages/AppScreenShot1.png)
-![Screenshot of Book Modal](./src/READMEImages/AppScreenShot2.png)
+![Screenshot of Search Functionality](./src/assets/READMEImages/AppScreenShot1.png)
+![Screenshot of Book Modal](./src/assets/READMEImages/AppScreenShot2.png)
 
 ## Features
 
@@ -18,7 +18,7 @@ It produces a list of results, with the option to view more info by clicking int
 
 ## Useful Resources
 
-- [Truncating Long Text](https://javascript.info/task/truncate#:~:text=Create%20a%20function%20truncate(str,truncated%20(if%20needed)%20string.)
+- [Truncating Long Text]("https://javascript.info/task/truncate#:~:text=Create%20a%20function%20truncate(str,truncated%20(if%20needed)%20string.")
 - [Google Books API no Auth link](https://developers.google.com/books/docs/v1/using#WorkingVolumes)
 - [Using Async Await](https://dmitripavlutin.com/javascript-fetch-async-await/)
 
