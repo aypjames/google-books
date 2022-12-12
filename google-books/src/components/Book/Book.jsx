@@ -1,9 +1,7 @@
 import styles from "./Book.module.scss";
+import { truncateStr } from "../../utilities/utilities.js";
 
 const Book = ({ bookImg, bookTitle, bookAuthor, bookDesc }) => {
-  const truncateStr = (str, maxLength) => {
-    return str.length > maxLength ? str.slice(0, maxLength - 1) + "..." : str;
-  };
   return (
     <div className={styles.Book}>
       <img
@@ -12,8 +10,8 @@ const Book = ({ bookImg, bookTitle, bookAuthor, bookDesc }) => {
         alt={`Image of the book cover for ${bookTitle}`}
       />
       <h3>{truncateStr(bookTitle, 30)}</h3>
-      <p>by {truncateStr(bookAuthor, 30)}</p>
-      <p>{truncateStr(bookDesc, 50)}</p>
+      <p className={styles.Book_Author}>by {truncateStr(bookAuthor, 30)}</p>
+      <p>{truncateStr(bookDesc, 80)}</p>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
 import BookList from "./containers/BookList/BookList";
 import BookModal from "./components/BookModal/BookModal";
 import styles from "./App.module.scss";
@@ -7,41 +6,45 @@ import { useState } from "react";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [prevSearchTerm, setPrevSearchTerm] = useState("");
   const [isFetchingData, setIsFetchingData] = useState(false);
-  const [loadModalData, setloadModalData] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [bookIndexForModal, setBookIndexForModal] = useState(0);
+  const [specificBook, setSpecificBook] = useState([]);
 
-  console.log(bookIndexForModal);
+  const displayBookModal = () => {
+    if (showModal) {
+      return (
+        <BookModal specificBook={specificBook} setShowModal={setShowModal} />
+      );
+    }
+  };
 
   return (
     <div className={styles.App}>
-      <Header />
-      <Form
+      <Header
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         isFetchingData={isFetchingData}
         setIsFetchingData={setIsFetchingData}
         setSearchResults={setSearchResults}
-        setloadModalData={setloadModalData}
+        setShowModal={setShowModal}
+        setPrevSearchTerm={setPrevSearchTerm}
       />
-      {isFetchingData ? (
-        <p>{`Just a sec! Searching the library for "${searchTerm}"`}</p>
-      ) : (
-        <BookList
-          searchResults={searchResults}
-          setBookIndexForModal={setBookIndexForModal}
-        />
-      )}
-
-      {loadModalData ? (
-        <BookModal
-          bookIndexForModal={bookIndexForModal}
-          searchResults={searchResults}
-        />
-      ) : (
-        <p>Awaiting Search</p>
-      )}
+      <div>
+        {isFetchingData ? (
+          <p>{`Just a second! Searching the library for "${searchTerm}"`}</p>
+        ) : (
+          <BookList
+            searchTerm={searchTerm}
+            prevSearchTerm={prevSearchTerm}
+            searchResults={searchResults}
+            setSpecificBook={setSpecificBook}
+            setShowModal={setShowModal}
+          />
+        )}
+        {displayBookModal()}
+      </div>
     </div>
   );
 };

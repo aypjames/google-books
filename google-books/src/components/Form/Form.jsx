@@ -1,12 +1,13 @@
 import { useState } from "react";
+import styles from "./Form.module.scss";
 
 const Form = ({
   searchTerm,
   setSearchTerm,
+  setPrevSearchTerm,
   isFetchingData,
   setIsFetchingData,
   setSearchResults,
-  setloadModalData,
 }) => {
   const dataFetch = async () => {
     const searchQuery = searchTerm.replaceAll(" ", "+");
@@ -19,11 +20,11 @@ const Form = ({
     console.log("query results", arrayOfBooks);
     setSearchResults(arrayOfBooks);
     setIsFetchingData(false);
-    setloadModalData(true);
   };
 
   const handleSubmitClick = (e) => {
     e.preventDefault();
+    setPrevSearchTerm(searchTerm);
     setIsFetchingData(true);
     dataFetch();
   };
@@ -33,17 +34,19 @@ const Form = ({
   };
 
   return (
-    <form>
-      <input
-        type="text"
-        id="searchTerm"
-        placeholder="Book Title"
-        onChange={handleInputChange}
-      />
-      <button disabled={isFetchingData} onClick={handleSubmitClick}>
-        Search
-      </button>
-    </form>
+    <div className={styles.Form}>
+      <form>
+        <input
+          type="text"
+          id="searchTerm"
+          placeholder="Book Title"
+          onChange={handleInputChange}
+        />
+        <button disabled={isFetchingData} onClick={handleSubmitClick}>
+          Search
+        </button>
+      </form>
+    </div>
   );
 };
 
