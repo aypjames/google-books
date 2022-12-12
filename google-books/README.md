@@ -18,7 +18,7 @@ It produces a list of results, with the option to view more info by clicking int
 
 ## Useful Resources
 
-- [Truncating Long Text]("https://javascript.info/task/truncate#:~:text=Create%20a%20function%20truncate(str,truncated%20(if%20needed)%20string.")
+- [Truncating Long Text](https://javascript.info/task/truncate)
 - [Google Books API no Auth link](https://developers.google.com/books/docs/v1/using#WorkingVolumes)
 - [Using Async Await](https://dmitripavlutin.com/javascript-fetch-async-await/)
 
