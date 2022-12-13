@@ -1,0 +1,17 @@
+$dark-green: #1c575f;
+$lime-green: #e7fc2b;
+$lime-green-dark: #ccdf23;
+$cool-blue: #30fdce;
+$cool-blue-dark: #28d9af;
+$bg-grey: #f0f0f0;
+
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+@mixin for-tablet-portrait-up {
+  @media (max-width: 820px) {
+    @content;
+  }
+}
