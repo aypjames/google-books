@@ -33,3 +33,19 @@
     font-style: italic;
   }
 }
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.truncateMultiline {
+  overflow: hidden;
+  max-height: 4.2rem;
+  line-height: 1.4em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+}

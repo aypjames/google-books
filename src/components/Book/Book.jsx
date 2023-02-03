@@ -1,17 +1,21 @@
+import { formatData } from "../../utilities/utilities";
 import styles from "./Book.module.scss";
-import { truncateStr } from "../../utilities/utilities.js";
 
-const Book = ({ bookImg, bookTitle, bookAuthor, bookDesc }) => {
+const Book = ({ bookDetails }) => {
+  const formattedData = formatData(bookDetails);
+
   return (
     <div className={styles.Book}>
       <img
         className={styles.Book_Img}
-        src={bookImg}
-        alt={`Image of the book cover for ${bookTitle}`}
+        src={formattedData.smallThumbnail}
+        alt={`Image of the book cover for ${formattedData.title}`}
       />
-      <h3>{truncateStr(bookTitle, 30)}</h3>
-      <p className={styles.Book_Author}>by {truncateStr(bookAuthor, 30)}</p>
-      <p>{truncateStr(bookDesc, 80)}</p>
+      <h3 className={styles.truncate}>{formattedData.title}</h3>
+      <p className={`${styles.Book_Author} ${styles.truncate}`}>
+        by {formattedData.authors}
+      </p>
+      <p className={styles.truncateMultiline}>{formattedData.description}</p>
     </div>
   );
 };

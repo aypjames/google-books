@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import { GlobalContext } from "../../App.jsx";
+import { formatData } from "../../utilities/utilities.js";
 import styles from "./BookModal.module.scss";
 
-const BookModal = ({ specificBook, setShowModal }) => {
-  const book = specificBook;
-  console.log(book.infoLink);
+const BookModal = () => {
+  const { specificBook, setShowModal } = useContext(GlobalContext);
+
+  const formattedData = formatData(specificBook);
 
   return (
     <div className={styles.BookModal}>
@@ -10,38 +14,29 @@ const BookModal = ({ specificBook, setShowModal }) => {
         <div className={styles.Content}>
           <div className={styles.Content_Img}>
             <img
-              src={
-                book.volumeInfo.imageLinks
-                  ? book.volumeInfo.imageLinks.smallThumbnail
-                  : "https://islandpress.org/sites/default/files/default_book_cover_2015.jpg"
-              }
-              alt={`Image of the book cover for ${book.volumeInfo.title}`}
+              src={formattedData.smallThumbnail}
+              alt={`Image of the book cover for ${formattedData.title}`}
             />
           </div>
           <div className={styles.Content_Desc}>
-            <h2>{book.volumeInfo.title}</h2>
-            <p className={styles.italics}>
-              by{" "}
-              {book.volumeInfo.authors
-                ? book.volumeInfo.authors.join(", ")
-                : "Unknown"}
-            </p>
-            <p>{book.volumeInfo.description ?? "No description"}</p>
+            <h2>{formattedData.title}</h2>
+            <p className={styles.italics}>by {formattedData.authors}</p>
+            <p>{formattedData.description}</p>
             <p>
               <span className={styles.bold}>Publisher:</span>{" "}
-              {book.volumeInfo.publisher ?? "Unknown"}
+              {formattedData.publisher}
             </p>
             <p>
               <span className={styles.bold}>Published Date:</span>{" "}
-              {book.volumeInfo.publishedDate ?? "Unknown"}
+              {formattedData.publishedDate}
             </p>
           </div>
         </div>
-        {book.volumeInfo.infoLink && (
+        {formattedData.moreInfoLink !== "No Link" && (
           <button
             className={styles.BookModal_Button_MoreInfo}
             onClick={() => {
-              window.open(book.volumeInfo.infoLink, "_blank");
+              window.open(formattedData.moreInfoLink, "_blank");
             }}
           >
             More Info
@@ -54,7 +49,7 @@ const BookModal = ({ specificBook, setShowModal }) => {
             setShowModal(false);
           }}
         >
-          Cancel
+          Close
         </button>
       </div>
     </div>

@@ -1,18 +1,17 @@
+import { useContext } from "react";
+import { GlobalContext } from "../../App";
 import Book from "../../components/Book/Book";
+import { formatData } from "../../utilities/utilities";
 import styles from "./BookList.module.scss";
 
-const BookList = ({
-  searchTerm,
-  prevSearchTerm,
-  searchResults,
-  setSpecificBook,
-  setShowModal,
-}) => {
-  // To displayed the last searched term and not to dynamically change text.
+const BookList = () => {
+  const { prevSearchTerm, searchResults, setSpecificBook, setShowModal } =
+    useContext(GlobalContext);
+
   return (
     <div className={styles.BookList}>
       {!searchResults ? (
-        <p>{`Sorry, we could not find "${prevSearchTerm}" in our library.`}</p>
+        <p>{`Sorry, we could not find "${prevSearchTerm}" in the library.`}</p>
       ) : (
         <>
           {searchResults.map((book) => (
@@ -23,20 +22,7 @@ const BookList = ({
                 setShowModal(true);
               }}
             >
-              <Book
-                bookImg={
-                  book.volumeInfo.imageLinks
-                    ? book.volumeInfo.imageLinks.smallThumbnail
-                    : "https://islandpress.org/sites/default/files/default_book_cover_2015.jpg"
-                }
-                bookTitle={book.volumeInfo.title}
-                bookAuthor={
-                  book.volumeInfo.authors
-                    ? book.volumeInfo.authors.join(", ")
-                    : "Unknown"
-                }
-                bookDesc={book.volumeInfo.description ?? "No description"}
-              />
+              <Book bookDetails={book} />
             </div>
           ))}
         </>

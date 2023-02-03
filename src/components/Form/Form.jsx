@@ -1,32 +1,36 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styles from "./Form.module.scss";
+import { GlobalContext } from "../../App.jsx";
+import { getArrayOfBooks } from "../../utilities/utilities";
 
-const Form = ({
-  searchTerm,
-  setSearchTerm,
-  setPrevSearchTerm,
-  isFetchingData,
-  setIsFetchingData,
-  setSearchResults,
-}) => {
-  const dataFetch = async () => {
-    const searchQuery = searchTerm.replaceAll(" ", "+");
+const Form = () => {
+  const {
+    searchTerm,
+    setSearchTerm,
+    setPrevSearchTerm,
+    isFetchingData,
+    setIsFetchingData,
+    setSearchResults,
+  } = useContext(GlobalContext);
+
+  const searchForBooks = async (query) => {
+    const searchQuery = query.replaceAll(" ", "+");
     const response =
       await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=40
 `);
     const results = await response.json();
-    const resultsToArray = Object.values(results);
-    const arrayOfBooks = resultsToArray[2];
-    console.log("query results", arrayOfBooks);
-    setSearchResults(arrayOfBooks);
-    setIsFetchingData(false);
+    return results;
   };
 
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    setPrevSearchTerm(searchTerm);
     setIsFetchingData(true);
-    dataFetch();
+    setPrevSearchTerm(searchTerm);
+    searchForBooks(searchTerm)
+      .then((results) => getArrayOfBooks(results))
+      .then((listOfBooks) => setSearchResults(listOfBooks))
+      .catch((error) => console.log(error))
+      .finally(() => setIsFetchingData(false));
   };
 
   const handleInputChange = (e) => {
