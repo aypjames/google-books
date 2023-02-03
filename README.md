@@ -53,5 +53,5 @@ Page should include the following:
 ### Reachout
 
 - [LinkedIn](https://au.linkedin.com/in/ayushjames)
+- [Email](mailto:ayushpjames@gmail.com)
 - [Portfolio]()
-- [Email](mailto: ayushpjames@gmail.com)
