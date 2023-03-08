@@ -4,7 +4,6 @@ A Google Books search enginge built using React and SCSS (using BEM methodology)
 
 [View deployed App](https://google-books-one.vercel.app/)
 
-## ScreenShots
 
 ![Screenshot of Search Functionality](./src/assets/READMEImages/AppScreenShot1.png)
 ![Screenshot of Book Modal](./src/assets/READMEImages/AppScreenShot2.png)
@@ -54,4 +53,3 @@ Page should include the following:
 
 - [LinkedIn](https://au.linkedin.com/in/ayushjames)
 - [Email](mailto:ayushpjames@gmail.com)
-- [Portfolio]()
